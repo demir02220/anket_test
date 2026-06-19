@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araştırma</title>
+    <!-- Use a modern, neutral font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loading" class="loading-state">Yükleniyor...</div>
+        <div id="finished" class="finished-state" style="display: none;">
+            <p>Katılımınız için teşekkür ederiz. Tüm görselleri tamamladınız.</p>
+        </div>
+        
+        <div id="intro-interface" class="intro-interface" style="display: none;">
+            
+            <!-- Sticky Progress Bar Container -->
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="intro-progress"></div>
+                </div>
+                <div class="progress-text" id="intro-progress-text">0 / 20 Cevaplandı</div>
+            </div>
+
+            <h2 class="intro-title">Giriş Değerlendirmesi</h2>
+            <p class="intro-description">Lütfen teste başlamadan önce aşağıdaki ifadelere ne ölçüde katıldığınızı belirtin.</p>
+            
+            <!-- Dynamic container for questions -->
+            <div id="dynamic-questions-container" class="questions-container">
+                <!-- JavaScript will inject 20 questions here -->
+            </div>
+
+            <button id="start-survey-btn" disabled>Teste Başla</button>
+        </div>
+
+        <div id="test-interface" class="test-interface" style="display: none;">
+            <!-- Sticky Progress Bar Container for Main Test -->
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="test-progress"></div>
+                </div>
+                <div class="progress-text" id="test-progress-text">1 / 50 Görsel</div>
+            </div>
+
+            <div class="image-container">
+                <img id="logo-image" src="" alt="Logo">
+            </div>
+            
+            <div class="input-container">
+                <input 
+                    type="text" 
+                    id="association-input" 
+                    placeholder="Bu görsel size tek kelimeyle ne çağrıştırıyor?"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button id="submit-button">Gönder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
