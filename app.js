@@ -68,7 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const checked = document.querySelector(`input[name="${q.id}"]:checked`);
             if (checked) {
                 answeredCount++;
-                introData[`Soru_${q.id}`] = parseInt(checked.value);
+                // Anahtar olarak sadece numarayı kullan (q1 -> 1, q2 -> 2 vb.)
+                const questionNum = q.id.replace('q', '');
+                introData[questionNum] = parseInt(checked.value);
             }
         });
         
@@ -183,8 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
         inputField.disabled = true;
         submitBtn.disabled = true;
 
-        // Save to state with the required format "Görsel X"
-        imageAnswers[`Görsel ${testImageIndex}`] = userWord;
+        // CSV formatı için 1'den 70'e kesintisiz devam etmesi istendi.
+        // Likert 1-20 arasıydı, görseller 21'den başlayarak devam edecek.
+        const imageKey = (totalIntroQuestions + testImageIndex).toString();
+        imageAnswers[imageKey] = userWord;
 
         // Move to next image immediately without making backend request
         loadNextImage();
@@ -198,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingEl.textContent = 'Cevaplarınız kaydediliyor, lütfen sayfayı kapatmayın...';
 
         const finalPayload = {
+            "Tarih": new Date().toLocaleString('tr-TR'),
             ...introData,
             ...imageAnswers
         };
